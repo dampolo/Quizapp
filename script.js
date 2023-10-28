@@ -82,6 +82,7 @@ function init() {
 
 function showQuestion() {
     let question = questions[currentQuestions]
+    document.getElementById("question-text").innerHTML = question["question"]
     document.getElementById("answer-1").innerHTML = question["answer-1"]
     document.getElementById("answer-2").innerHTML = question["answer-2"]
     document.getElementById("answer-3").innerHTML = question["answer-3"]
@@ -90,14 +91,35 @@ function showQuestion() {
 
 function answer(selection) {
     let question = questions[currentQuestions]
-    let selectedQuestionNumber = selection.slice(-1)
+    let selectedQuestionNumber = selection.slice(-1);
+    let idOfRightAnswer = `answer-${question["correct-answer"]}`;
 
     if (selectedQuestionNumber == question["correct-answer"]) {
         console.log("RICHTIG")
-        document.getElementById(selection).parentNode.classList.add("bg-success")
+        document.getElementById(selection).classList.add("bg-success")
 
     } else {
         console.log("FALSCH")
         document.getElementById(selection).classList.add("bg-danger")
+        document.getElementById(idOfRightAnswer).classList.add("bg-success")
     }
+    document.getElementById("button").disabled = false;
+}
+
+function nextQuestion() {
+    currentQuestions++
+    showQuestion()
+    resetAnswers()
+}
+
+function resetAnswers() {
+    document.getElementById("button").disabled = true;
+    document.getElementById("answer-1").classList.remove("bg-danger")
+    document.getElementById("answer-1").classList.remove("bg-success")
+    document.getElementById("answer-2").classList.remove("bg-danger")
+    document.getElementById("answer-2").classList.remove("bg-success")
+    document.getElementById("answer-3").classList.remove("bg-danger")
+    document.getElementById("answer-3").classList.remove("bg-success")
+    document.getElementById("answer-4").classList.remove("bg-danger")
+    document.getElementById("answer-4").classList.remove("bg-success")
 }
