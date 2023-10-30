@@ -79,12 +79,12 @@ let AUDIO_SUCCESS = new Audio('./sounds/success.mp3')
 let AUDIO_FAIL = new Audio('./sounds/wrong.mp3')
 
 function init() {
-    document.getElementById("all-questions-amounts").innerHTML = questions.length;
+    document.getElementById("all-questions-amounts").innerHTML = 5;
     showQuestion()
 }
 
 function showQuestion() {
-    if(currentQuestions >= questions.length) {
+    if(currentQuestions >= 5) {
         // Show end screen
         document.getElementById("end-screen").style = ""
         document.getElementById("question-body").style.display = "none"
@@ -102,12 +102,20 @@ function showQuestion() {
 
         let question = questions[currentQuestions]
 
+        // Generate a random index within the range of the 'questions' array
+        const randomIndex = Math.floor(Math.random() * questions.length);
+
+        // Retrieve the random question object
+        const randomQuestion = questions[randomIndex];
+
+        console.log(randomQuestion);
+
         document.getElementById("number-question").innerHTML = currentQuestions+1
-        document.getElementById("question-text").innerHTML = question["question"]
-        document.getElementById("answer-1").innerHTML = question["answer-1"]
-        document.getElementById("answer-2").innerHTML = question["answer-2"]
-        document.getElementById("answer-3").innerHTML = question["answer-3"]
-        document.getElementById("answer-4").innerHTML = question["answer-4"]
+        document.getElementById("question-text").innerHTML = randomQuestion["question"]
+        document.getElementById("answer-1").innerHTML = randomQuestion["answer-1"]
+        document.getElementById("answer-2").innerHTML = randomQuestion["answer-2"]
+        document.getElementById("answer-3").innerHTML = randomQuestion["answer-3"]
+        document.getElementById("answer-4").innerHTML = randomQuestion["answer-4"]
     }
 }
 
