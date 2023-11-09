@@ -1,34 +1,62 @@
+/*
+    2. Remove default margin
+  */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+
+
 body {
-    background-color: rgb(0,122,255) !important;
-
-}
-
-.container {
-    min-height: 100vh;
-    background-color: rgb(0,122,255) !important;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    background-color: aqua !important;
+}
+.quiz-nav-section {
+    --bs-gutter-x: 0 !important;
+    display: flex !important;
 }
 
-.quiz-card {
-    width: 30rem;
+.card-img-top {
+    height: 85px;
+    object-fit: cover;
+    object-position: bottom;
 }
 
-.card-body {
-    /* display: flex; */
-}
 .question-footer {
     border-top: 1px solid rgb(0,0,0);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 12px;
+}
+
+
+.quiz-answer-card {
+    display: flex;
+    flex-direction: row !important;
+    width: 100%;
+}
+
+.quiz-answer-card-letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(214,214,214);
+    width: 50px;
+    height: 50px;
 }
 
 .quiz-answer-card:hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.05);
+}
+
+.quiz-answer {
+    display: flex;
+    align-items: center;
 }
 
 .bg-success,
@@ -40,13 +68,166 @@ body {
     width: 100%;
 }
 
-.text-center {
-    text-align: center;
+.quiz-letter-background-color {
+    background-color: rgb(77, 191, 25) !important;
+    color: rgb(255, 255, 255);
 }
 
+.quiz-answer-card-color {
+    background-color: rgb(183, 247, 153) !important;
+}
+
+.quiz-wrong-letter-background-color {
+    background-color: rgb(247, 25, 22) !important;
+    color: rgb(255, 255, 255);
+}
+
+.quiz-wrong-answer-card-color {
+    background-color: rgb(255, 163, 164) !important;
+}
+
+.quiz-nav-logo {
+    height: 450px;
+    background-color: rgb(39, 53, 92) !important;
+}
+
+.quiz-start-page {
+    background-image: url(./img/brainbg.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 450px;
+}
+
+.g-1,
+.gy-1,
+.gx-1 {
+    --bs-gutter-y: 0 !important;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.container-fluid {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}    
 .button-row {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+}
+
+.quiz-nav-li {
+    margin: 10px 0;
+    border: none !important;
+    background-color: rgb(39, 53, 92);
+    color: rgb(175, 186, 213);
+    list-style-type: none; 
+    border-left: 5px solid rgb(255, 255, 255) !important;
+    cursor: pointer;
+}
+
+.quiz-nav-li:hover,
+.quiz-nav-link:hover {
+    color: rgb(255, 255, 255) !important;
+    border-left: 5px solid rgb(255, 255, 255) !important;   
+}
+
+.quiz-nav-li:active,
+.quiz-nav-link:active {
+    color: rgb(109, 122, 156) !important;
+    border-left: 5px solid rgb(109, 122, 156) !important;
+}
+
+.active-theme {
+    margin: 10px 0;
+    border: none !important;
+    background-color: rgb(39, 53, 92);
+    color: rgb(255, 255, 255);
+    list-style-type: none; 
+    border-left: 5px solid rgb(255, 255, 255) !important;
+    cursor: pointer;
+}
+
+.container-fluid {
+    background-color: rgb(39, 53, 92) !important;
+}
+
+.start-button {
+    background-color: rgb(250, 121, 62) !important;
+}
+
+.start-button:hover {
+    background-color: rgb(255, 88, 10) !important;
+}
+
+.start-button:active {
+    background-color: rgb(252,130,112) !important;
+}
+
+path {
+    font-weight: 900 !important;
+}
+
+.quiz-end-image {
+    display: flex;
+    justify-content: center;
+}
+
+.quiz-end-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-bar-procent {
+    color: rgb(0,0,0);
+}
+
+
+/* RESPOSNIVE */
+.quiz-hamburger {
+    margin: 10px;
+    padding: 0 !important;
+    color: rgb(255,255,255) !important;
+    border: 1px solid rgb(255, 255, 255) !important;
+}
+
+.quiz-nav-li {
+    padding: 0 !important;
+    color: rgb(147, 158, 187) !important;
+    border-left: 5px solid rgb(39, 53, 92) !important;
+}
+
+.quiz-nav-link {
+    padding: 0 !important;
+    color: rgb(147, 158, 187) !important;
+    border-left: 5px solid rgb(39, 53, 92) !important;
+    padding-left: 10px !important;
+}
+
+.quiz-nav-link-active {
+    padding: 0 !important;
+    color: rgb(255, 255, 255) !important;
+    border-left: 5px solid rgb(255, 255, 255) !important;
+    padding-left: 10px !important;
+}
+
+.quiz-name-responisve {
+    padding-left: 10px !important;
+    color: rgb(255,255,255) !important;
+}
+.quiz-navbar-toggler-icon {
+    height: 25px;
+    width: 25px;
+    color: rgb(255,255,255) !important;
+
+}
+
+/* EDITING */
+body * {
+    border: solid 1px black;
 }
