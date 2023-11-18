@@ -1,0 +1,28 @@
+
+// customs veriables
+$info: rgb(254, 250, 239);
+$secondary: rgb(174, 174, 174);
+$warning: rgb(250, 121, 62);
+
+// import the functions & variables
+
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+
+
+$custom-theme-colors: (
+    "quiz-main-background-color": rgb(254, 250, 239),
+    "quiz-letter-background-color": rgb(77, 191, 25),
+    "quiz-answer-card-color": rgb(183, 247, 153),
+    "quiz-wrong-letter-background-color": rgb(247, 25, 22),
+    "quiz-wrong-answer-card-color": rgb(255, 163, 164), 
+    // "quiz-nav-letter-color": rgb(147, 158, 187),
+    "quiz-nav-background-color": rgb(39, 53, 92),
+    "quiz-card-background-color": rgb(247,247,247),
+    "quiz-you-score-color": rgb(231, 138, 64)
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+// import bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
