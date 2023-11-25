@@ -4,6 +4,14 @@
     object-position: bottom;
 }
 
+.progress {
+    height: 25px;
+}
+
+h6 {
+    margin: 0;
+} */
+
 .question {
     height: 50px;
 }

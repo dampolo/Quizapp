@@ -68,8 +68,6 @@ function chooseTheme(params) {
     temporaryParameter = params;  //this is for the if-query in the function showQuestion()
     
     toggleToolTip()
-    progressBarEl.classList.add("d-none");
-    progressBarPrecentEl.innerHTML= `${0}%`;
     htmlEl.classList.remove("active-theme")
     cssEl.classList.remove("active-theme")
     pythonEl.classList.remove("active-theme")
@@ -107,6 +105,8 @@ function chooseTheme(params) {
 }
 
 function startQuiz() {
+    progressBarEl.classList.add("d-none");
+    progressBarPrecentEl.innerHTML= `${0}%`;
     quizStartPageEl.classList.add("d-none");
     quizCardEl.classList.remove("d-none");
     progressBarEl.classList.remove("d-none");
