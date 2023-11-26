@@ -64,9 +64,7 @@ function shuffle(array) {
 
 
 function chooseTheme(params) {
-
     temporaryParameter = params;  //this is for the if-query in the function showQuestion()
-    
     toggleToolTip()
     htmlEl.classList.remove("active-theme")
     cssEl.classList.remove("active-theme")
@@ -74,27 +72,8 @@ function chooseTheme(params) {
     htmlResponisveEl.classList.remove("active-theme")
     cssResponisveEl.classList.remove("active-theme")
     pythonResponisveEl.classList.remove("active-theme")
-
     shuffledQuestions = []
-
-    if (params == "HTML") {
-        chosenSection = questionsHtml;
-        shuffledQuestions.push(...chosenSection)
-        htmlEl.classList.add("active-theme")
-        htmlResponisveEl.classList.add("active-theme")
-
-     } else if (params == "CSS"){
-        chosenSection = questionsCss;
-        shuffledQuestions.push(...chosenSection)
-        cssEl.classList.add("active-theme")
-        cssResponisveEl.classList.add("active-theme")
-
-    } else {
-        chosenSection = questionsPython
-        shuffledQuestions.push(...chosenSection)
-        pythonEl.classList.add("active-theme")
-        pythonResponisveEl.classList.add("active-theme")
-    }
+    generellChecingParameter(params)
     quizStartPageEl.classList.remove("d-none");
     document.querySelector(".quiz-thema").innerHTML = `${params}`;
     document.querySelector(".quiz-thema-final").innerHTML = `${params}`;
@@ -123,45 +102,7 @@ function showQuestion() {
     htmlResponisveLiEl.removeAttribute("onclick");
     cssResponisveLiEl.removeAttribute("onclick");
     pythonResponisveLiEl.removeAttribute("onclick");
-    
-    if(temporaryParameter == "HTML") {
-        cssLiEl.setAttribute("data-bs-toggle", "modal");
-        cssLiEl.setAttribute("href", "#exampleModalToggle");
-        // cssLiEl.setAttribute("onclick", "newQuizCSS()");
-        pythonLiEl.setAttribute("data-bs-toggle", "modal");
-        pythonLiEl.setAttribute("href", "#exampleModalToggle");
-        // pythonLiEl.setAttribute("onclick", "newQuizPython()");
-
-        
-        // document.getElementById("modal-yes").setAttribute("onclick", "CSS")
-        cssResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        cssResponisveLiEl.setAttribute("href", "#exampleModalToggle");
-        pythonResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        pythonResponisveLiEl.setAttribute("href", "#exampleModalToggle");
-        
-    } else if (temporaryParameter == "CSS"){
-        
-        htmlLiEl.setAttribute("data-bs-toggle", "modal");
-        htmlLiEl.setAttribute("href", "#exampleModalToggle");
-        pythonLiEl.setAttribute("data-bs-toggle", "modal");
-        pythonLiEl.setAttribute("href", "#exampleModalToggle");
-
-        htmlResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        htmlResponisveLiEl.setAttribute("href", "#exampleModalToggle");
-        pythonResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        pythonResponisveLiEl.setAttribute("href", "#exampleModalToggle");
-       
-  } else {
-        cssLiEl.setAttribute("data-bs-toggle", "modal");
-        cssLiEl.setAttribute("href", "#exampleModalToggle");
-        htmlLiEl.setAttribute("data-bs-toggle", "modal");
-        htmlLiEl.setAttribute("href", "#exampleModalToggle");
-
-        cssResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        cssResponisveLiEl.setAttribute("href", "#exampleModalToggle");
-        htmlResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        htmlResponisveLiEl.setAttribute("href", "#exampleModalToggle");
-  } 
+    changingMenu()
   
   if (currentQuestions >= chosenSection.length) {
         // Show end screen
@@ -184,25 +125,92 @@ function showQuestion() {
         progressBarPrecentEl.innerHTML= `${precent}%`;
         document.querySelector(".number-question").innerHTML = currentQuestions+1;
         document.querySelector(".question-text").innerHTML = question["question"];
+
+        // createQuestion()
+        for (let i = 0; i < 4; i++) {
+            questionTableEl.innerHTML += generellCreateQuestionHtml(i, question)
+        }
+    }
+}
+
+function answer(selection, id) {
+    changingColors(selection, id)
+
+    questionTableEl.style.pointerEvents = "none";
+    bodyEl.disabled = false;
+}
+
+function nextQuestion() {
+    currentQuestions++;
+    questionTableEl.style.pointerEvents = "all";
+    bodyEl.disabled = true;
+    showQuestion();
+}
+
+function restartGame() {
+    location.reload();
+}
+
+function changingMenu() {
+    if(temporaryParameter == "HTML") {
+        cssLiEl.setAttribute("data-bs-toggle", "modal");
+        cssLiEl.setAttribute("href", "#exampleModalToggle");
+        pythonLiEl.setAttribute("data-bs-toggle", "modal");
+        pythonLiEl.setAttribute("href", "#exampleModalToggle");
+
+        cssResponisveLiEl.setAttribute("data-bs-toggle", "modal");
+        cssResponisveLiEl.setAttribute("href", "#exampleModalToggle");
+        pythonResponisveLiEl.setAttribute("data-bs-toggle", "modal");
+        pythonResponisveLiEl.setAttribute("href", "#exampleModalToggle");
         
-            for (let i = 0; i < 4; i++) {
-                questionTableEl.innerHTML += 
-                /*html*/ `
-                <div class="row quiz-answer-card mb-2" id="answer-${i}-container" onclick="answer(${question.answers[i].correct}, ${question.answers[i].id})">       
-                                
-                <div  class="quiz-answer-card-letter m-2 col-1 row justify-content-center align-items-center" id="answer-${i}-letter">${String.fromCharCode("A".charCodeAt(0) + i)}
-                </div>
-                <div class="quiz-answer col d-flex align-items-center ps-2" id="answer-${i}">
-                    ${question.answers[i].answer}
-                </div>
-                </div>
-                `
-            }
+    } else if (temporaryParameter == "CSS"){
+        htmlLiEl.setAttribute("data-bs-toggle", "modal");
+        htmlLiEl.setAttribute("href", "#exampleModalToggle");
+        pythonLiEl.setAttribute("data-bs-toggle", "modal");
+        pythonLiEl.setAttribute("href", "#exampleModalToggle");
+
+        htmlResponisveLiEl.setAttribute("data-bs-toggle", "modal");
+        htmlResponisveLiEl.setAttribute("href", "#exampleModalToggle");
+        pythonResponisveLiEl.setAttribute("data-bs-toggle", "modal");
+        pythonResponisveLiEl.setAttribute("href", "#exampleModalToggle");
+       
+  } else {
+        cssLiEl.setAttribute("data-bs-toggle", "modal");
+        cssLiEl.setAttribute("href", "#exampleModalToggle");
+        htmlLiEl.setAttribute("data-bs-toggle", "modal");
+        htmlLiEl.setAttribute("href", "#exampleModalToggle");
+
+        cssResponisveLiEl.setAttribute("data-bs-toggle", "modal");
+        cssResponisveLiEl.setAttribute("href", "#exampleModalToggle");
+        htmlResponisveLiEl.setAttribute("data-bs-toggle", "modal");
+        htmlResponisveLiEl.setAttribute("href", "#exampleModalToggle");
+  } 
+}
+
+
+function generellChecingParameter(params) {
+    if (params == "HTML") {
+        chosenSection = questionsHtml;
+        shuffledQuestions.push(...chosenSection)
+        htmlEl.classList.add("active-theme")
+        htmlResponisveEl.classList.add("active-theme")
+
+    } else if (params == "CSS"){
+        chosenSection = questionsCss;
+        shuffledQuestions.push(...chosenSection)
+        cssEl.classList.add("active-theme")
+        cssResponisveEl.classList.add("active-theme")
+        
+    } else {
+        chosenSection = questionsPython
+        shuffledQuestions.push(...chosenSection)
+        pythonEl.classList.add("active-theme")
+        pythonResponisveEl.classList.add("active-theme")
     }
 }
 
 
-function answer(selection, id) {
+function changingColors(selection, id) {
     const question = chosenSection[currentQuestions];
     const correctAnswer = question.answers.find(answer => answer.correct);
     const idOfRightAnswer = `answer-${correctAnswer.id}-container`;
@@ -219,7 +227,7 @@ function answer(selection, id) {
         rightLetterEl.classList.add("text-white");
         rightAnswerEl.classList.add("bg-quiz-answer-card-color");
         rightQuestions++
-        // AUDIO_SUCCESS.play();
+        AUDIO_SUCCESS.play();
     } else {
         wrongLetterEl.classList.add("bg-quiz-wrong-letter-background-color");
         document.getElementById(idOfWrongAnswer).classList.add("bg-quiz-wrong-answer-card-color");
@@ -227,19 +235,19 @@ function answer(selection, id) {
         rightLetterEl.classList.add("bg-quiz-letter-background-color");
         rightLetterEl.classList.add("text-white");
         rightAnswerEl.classList.add("bg-quiz-answer-card-color");
-        // AUDIO_FAIL.play();
+        AUDIO_FAIL.play();
     }
-    questionTableEl.style.pointerEvents = "none";
-    bodyEl.disabled = false;
 }
 
-function nextQuestion() {
-    currentQuestions++;
-    questionTableEl.style.pointerEvents = "all";
-    bodyEl.disabled = true;
-    showQuestion();
-}
-
-function restartGame() {
-    location.reload();
+function generellCreateQuestionHtml(i, question) {
+    return  /*html*/ `
+    <div class="row quiz-answer-card mb-2" id="answer-${i}-container" onclick="answer(${question.answers[i].correct}, ${question.answers[i].id})">       
+                    
+    <div  class="quiz-answer-card-letter m-2 col-1 row justify-content-center align-items-center" id="answer-${i}-letter">${String.fromCharCode("A".charCodeAt(0) + i)}
+    </div>
+    <div class="quiz-answer col d-flex align-items-center ps-2" id="answer-${i}">
+        ${question.answers[i].answer}
+    </div>
+    </div>
+    `
 }
