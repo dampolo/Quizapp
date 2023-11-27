@@ -3,6 +3,7 @@ const tooltipTriggerList = document.querySelectorAll("[data-bs-toggle='tooltip']
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
 function toggleToolTip() {
+
         // Get the element with the "id" "tooltip".
     const element = document.getElementById("tooltip");
     const tooltip = bootstrap.Tooltip.getInstance(element)
@@ -32,27 +33,25 @@ const quizStartPageEl = document.getElementById("quiz-start-page");
 const quizCardEl = document.getElementById("quiz-card")
 const questionBodyEl = document.getElementById("question-body")
 
-
 const htmlEl = document.getElementById("html")
 const cssEl = document.getElementById("css")
 const pythonEl = document.getElementById("python")
 
-const htmlResponisveEl = document.getElementById("html-responsive")
-const cssResponisveEl = document.getElementById("css-responsive")
-const pythonResponisveEl = document.getElementById("python-responsive")
+const htmlResponsiveEl = document.getElementById("html-responsive")
+const cssResponsiveEl = document.getElementById("css-responsive")
+const pythonResponsiveEl = document.getElementById("python-responsive")
 
 const htmlLiEl = document.getElementById("html-li")
 const cssLiEl = document.getElementById("css-li")
 const pythonLiEl = document.getElementById("python-li")
 
-const htmlResponisveLiEl = document.getElementById("html-responsive")
-const cssResponisveLiEl = document.getElementById("css-responsive-li")
-const pythonResponisveLiEl = document.getElementById("python-responsive-li")
+const htmlResponsiveLiEl = document.getElementById("html-responsive-li")
+const cssResponsiveLiEl = document.getElementById("css-responsive-li")
+const pythonResponsiveLiEl = document.getElementById("python-responsive-li")
 
 const bodyEl = document.getElementById("button")
 const questionTableEl = document.getElementById("questionTable")
 const startButtonEl = document.getElementById("start-button")
-
 
 // Shuffle function to randomly order the questions. GOOGLE!
 function shuffle(array) {
@@ -62,16 +61,15 @@ function shuffle(array) {
     }
 }
 
-
 function chooseTheme(params) {
     temporaryParameter = params;  //this is for the if-query in the function showQuestion()
     toggleToolTip()
     htmlEl.classList.remove("active-theme")
     cssEl.classList.remove("active-theme")
     pythonEl.classList.remove("active-theme")
-    htmlResponisveEl.classList.remove("active-theme")
-    cssResponisveEl.classList.remove("active-theme")
-    pythonResponisveEl.classList.remove("active-theme")
+    htmlResponsiveEl.classList.remove("active-theme")
+    cssResponsiveEl.classList.remove("active-theme")
+    pythonResponsiveEl.classList.remove("active-theme")
     shuffledQuestions = []
     generellChecingParameter(params)
     quizStartPageEl.classList.remove("d-none");
@@ -99,9 +97,9 @@ function showQuestion() {
     htmlLiEl.removeAttribute("onclick");
     cssLiEl.removeAttribute("onclick");
     pythonLiEl.removeAttribute("onclick");
-    htmlResponisveLiEl.removeAttribute("onclick");
-    cssResponisveLiEl.removeAttribute("onclick");
-    pythonResponisveLiEl.removeAttribute("onclick");
+    htmlResponsiveLiEl.removeAttribute("onclick");
+    cssResponsiveLiEl.removeAttribute("onclick");
+    pythonResponsiveLiEl.removeAttribute("onclick");
     changingMenu()
   
   if (currentQuestions >= chosenSection.length) {
@@ -135,7 +133,6 @@ function showQuestion() {
 
 function answer(selection, id) {
     changingColors(selection, id)
-
     questionTableEl.style.pointerEvents = "none";
     bodyEl.disabled = false;
 }
@@ -158,10 +155,10 @@ function changingMenu() {
         pythonLiEl.setAttribute("data-bs-toggle", "modal");
         pythonLiEl.setAttribute("href", "#exampleModalToggle");
 
-        cssResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        cssResponisveLiEl.setAttribute("href", "#exampleModalToggle");
-        pythonResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        pythonResponisveLiEl.setAttribute("href", "#exampleModalToggle");
+        cssResponsiveLiEl.setAttribute("data-bs-toggle", "modal");
+        cssResponsiveLiEl.setAttribute("href", "#exampleModalToggle");
+        pythonResponsiveLiEl.setAttribute("data-bs-toggle", "modal");
+        pythonResponsiveLiEl.setAttribute("href", "#exampleModalToggle");
         
     } else if (temporaryParameter == "CSS"){
         htmlLiEl.setAttribute("data-bs-toggle", "modal");
@@ -169,10 +166,10 @@ function changingMenu() {
         pythonLiEl.setAttribute("data-bs-toggle", "modal");
         pythonLiEl.setAttribute("href", "#exampleModalToggle");
 
-        htmlResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        htmlResponisveLiEl.setAttribute("href", "#exampleModalToggle");
-        pythonResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        pythonResponisveLiEl.setAttribute("href", "#exampleModalToggle");
+        htmlResponsiveLiEl.setAttribute("data-bs-toggle", "modal");
+        htmlResponsiveLiEl.setAttribute("href", "#exampleModalToggle");
+        pythonResponsiveLiEl.setAttribute("data-bs-toggle", "modal");
+        pythonResponsiveLiEl.setAttribute("href", "#exampleModalToggle");
        
   } else {
         cssLiEl.setAttribute("data-bs-toggle", "modal");
@@ -180,35 +177,33 @@ function changingMenu() {
         htmlLiEl.setAttribute("data-bs-toggle", "modal");
         htmlLiEl.setAttribute("href", "#exampleModalToggle");
 
-        cssResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        cssResponisveLiEl.setAttribute("href", "#exampleModalToggle");
-        htmlResponisveLiEl.setAttribute("data-bs-toggle", "modal");
-        htmlResponisveLiEl.setAttribute("href", "#exampleModalToggle");
+        cssResponsiveLiEl.setAttribute("data-bs-toggle", "modal");
+        cssResponsiveLiEl.setAttribute("href", "#exampleModalToggle");
+        htmlResponsiveLiEl.setAttribute("data-bs-toggle", "modal");
+        htmlResponsiveLiEl.setAttribute("href", "#exampleModalToggle");
   } 
 }
-
 
 function generellChecingParameter(params) {
     if (params == "HTML") {
         chosenSection = questionsHtml;
         shuffledQuestions.push(...chosenSection)
         htmlEl.classList.add("active-theme")
-        htmlResponisveEl.classList.add("active-theme")
+        htmlResponsiveEl.classList.add("active-theme")
 
     } else if (params == "CSS"){
         chosenSection = questionsCss;
         shuffledQuestions.push(...chosenSection)
         cssEl.classList.add("active-theme")
-        cssResponisveEl.classList.add("active-theme")
+        cssResponsiveEl.classList.add("active-theme")
         
     } else {
         chosenSection = questionsPython
         shuffledQuestions.push(...chosenSection)
         pythonEl.classList.add("active-theme")
-        pythonResponisveEl.classList.add("active-theme")
+        pythonResponsiveEl.classList.add("active-theme")
     }
 }
-
 
 function changingColors(selection, id) {
     const question = chosenSection[currentQuestions];
